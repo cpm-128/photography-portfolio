@@ -1,5 +1,6 @@
 import React from 'react';
 import { capitalizeFirstLetter } from '../../utils/helpers';
+import photo from '../../assets/small/commercial/0.jpg';
 
 function Gallery(props) {
 
@@ -12,6 +13,13 @@ function Gallery(props) {
         <section>
             <h1>{capitalizeFirstLetter(currentCategory.name)}</h1>
             <p>{currentCategory.description}</p>
+            <div>
+                <img
+                    src={photo}
+                    alt='Commerical example'
+                    className='img-thumbnail mx-1'
+                />
+            </div>
         </section>
     );
 
