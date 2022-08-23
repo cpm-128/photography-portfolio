@@ -31,3 +31,14 @@ describe('Camera emoji is visible', () => {
         expect(getByLabelText('camera')).toHaveTextContent('📸');
     });
 })
+
+// declare the component being tested: LINKS ARE VISIBLE
+describe('Links are visible', () => {
+    test('inserts text into the links', () => {
+        // Arrange
+        const { getByTestId } = render(<Nav />);
+        // Assert
+        expect(getByTestId('link')).toHaveTextContent('Oh Snap!');
+        expect(getByTestId('about')).toHaveTextContent('About me');
+    });
+})
