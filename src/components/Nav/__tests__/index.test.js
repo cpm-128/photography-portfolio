@@ -21,3 +21,13 @@ describe('Nav component', () => {
     })
 
 })
+
+// declare the component being tested: CAMERA EMOJI
+describe('Camera emoji is visible', () => {
+    test('inserts emoji into the h2', () => {
+        // these labels come from Nav>index.js
+        const { getByLabelText } = render(<Nav />);
+
+        expect(getByLabelText('camera')).toHaveTextContent('📸');
+    });
+})
