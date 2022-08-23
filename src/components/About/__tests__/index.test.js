@@ -10,12 +10,12 @@ afterEach(cleanup);
 describe('About component', () => {
 
     // 1st test: baseline to verify the component is rendering
-    test('renders', () => {
+    it('renders', () => {
         render(<About />);
     });
 
     // 2nd test: compare snapshot version ofj the DOM node structure
-    it('matches snapshot DOM node scrcture', () => {
+    it('matches snapshot DOM node structure', () => {
         // snapshot = rendered about, compare for a match
         const { asFragment } = render(<About />);
         expect(asFragment()).toMatchSnapshot();
