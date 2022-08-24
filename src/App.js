@@ -1,3 +1,5 @@
+// this is the root component for how React components render
+
 import React, { useState } from 'react';
 import About from './components/About';
 import Nav from './components/Nav';
@@ -5,6 +7,9 @@ import Gallery from './components/Gallery';
 import ContactForm from './components/Contact';
 
 function App() {
+
+  // do not show contact form by default
+  const [contactSelected, setContactSelected] = useState(false);
 
   const [categories] = useState([
     {
@@ -34,11 +39,18 @@ function App() {
         categories={categories}
         setCurrentCategory={setCurrentCategory}
         currentCategory={currentCategory}
+        contactSelected={contactSelected}
+        setContactSelected={setContactSelected}
       ></Nav>
       <main>
-        <Gallery currentCategory={currentCategory}></Gallery>
-        <About></About>
-        <ContactForm></ContactForm>
+        {!contactSelected ? (
+          <>
+            <Gallery currentCategory={currentCategory}></Gallery>
+            <About></About>
+          </>
+        ) : (
+          <ContactForm></ContactForm>
+        )}
       </main>
     </div>
   );
