@@ -57,18 +57,24 @@ function ContactForm() {
                 {/* name input */}
                 <div>
                     <label htmlFor='name'>Name: </label>
-                    <input type='text' name='name' defaultValue={formState.name} onChange={handleChange}></input>
+                    <input type='text' name='name' defaultValue={formState.name} onBlur={handleChange}></input>
                 </div>
                 {/* email input */}
                 <div>
                     <label htmlFor='email'>Email address: </label>
-                    <input type='email' name='email' defaultValue={formState.email} onChange={handleChange}></input>
+                    <input type='email' name='email' defaultValue={formState.email} onBlur={handleChange}></input>
                 </div>
                 {/* message text area */}
                 <div>
                     <label htmlFor='message'>Message: </label>
-                    <textarea name='message' rows='5' defaultValue={formState.message} onChange={handleChange}></textarea>
+                    <textarea name='message' rows='5' defaultValue={formState.message} onBlur={handleChange}></textarea>
                 </div>
+                {/* error message only IF validation fails */}
+                {errorMessage && (
+                    <div>
+                        <p className='error-text'>{errorMessage}</p>
+                    </div>
+                )}
                 {/* button */}
                 <button type='submit'>Submit</button>
             </form>
