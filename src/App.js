@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import About from './components/About';
 import Nav from './components/Nav';
 import Gallery from './components/Gallery';
+import ContactForm from './components/Contact';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
 
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
 
+  // vdom rendering
   return (
     <div>
       <Nav
@@ -36,6 +38,7 @@ function App() {
       <main>
         <Gallery currentCategory={currentCategory}></Gallery>
         <About></About>
+        <ContactForm></ContactForm>
       </main>
     </div>
   );
