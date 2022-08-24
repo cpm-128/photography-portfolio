@@ -17,14 +17,22 @@ function ContactForm() {
         // spreadoperator to retain the other key-value pairs in the object
         setFormState({ ...formState, [e.target.name]: e.target.value })
     }
-    console.log('>> formState >>', formState)
+    //console.log('>> formState >>', formState)
+
+    // submit the form data
+    function handleSubmit(e) {
+        e.preventDefault();
+        //console.log('>> formState in handleSubmit >>', formState)
+        alert('Message sent.')
+        // TODO: project scope is only for frontend. Backend developer needed for additional functionality.
+    }
 
     // create the elements of the contact form to display on vdom
     return (
         <section>
             <h1>Contact me</h1>
 
-            <form id='contact-form'>
+            <form id='contact-form' onSubmit={handleSubmit}>
                 {/* name input */}
                 <div>
                     <label htmlFor='name'>Name: </label>
