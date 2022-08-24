@@ -51,7 +51,7 @@ function ContactForm() {
     // create the elements of the contact form to display on vdom
     return (
         <section>
-            <h1>Contact me</h1>
+            <h1 data-testid="h1tag">Contact me</h1>
 
             <form id='contact-form' onSubmit={handleSubmit}>
                 {/* name input */}
@@ -76,7 +76,7 @@ function ContactForm() {
                     </div>
                 )}
                 {/* button */}
-                <button type='submit'>Submit</button>
+                <button type='submit' data-testid="submitBtn">Submit</button>
             </form>
 
         </section>
