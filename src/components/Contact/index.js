@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { validateEmail } from '../../utils/helpers';
 
 function ContactForm() {
 
@@ -12,18 +13,38 @@ function ContactForm() {
         }
     );
 
+    // hook to define error messages
+    const [errorMessage, setErrorMessage] = useState('');
+
     //sync internal state of component formState with the user input from the vdom anything there is a keystroke in name
     function handleChange(e) {
-        // spreadoperator to retain the other key-value pairs in the object
-        setFormState({ ...formState, [e.target.name]: e.target.value })
+        // validate email before syncing
+        if (e.target.name === 'email') {
+            const isValid = validateEmail(e.target.value);
+            console.log('>> email isValid >>', isValid);
+            if (!isValid) {
+                setErrorMessage('Invalid email address.');
+            } else {
+                if (!e.target.value.length) {
+                    setErrorMessage(`{e.target.name} is required.`);
+                } else {
+                setErrorMessage('');
+                }
+            }
+        }
+        // spreadoperator to retain the other key-value pairs in the object only IF validation success
+        if (!errorMessage) {
+            setFormState({ ...formState, [e.target.name]: e.target.value })
+        }
     }
     //console.log('>> formState >>', formState)
+    //console.log('>> errorMessage if exists >>', errorMessage)
 
     // submit the form data
     function handleSubmit(e) {
         e.preventDefault();
         //console.log('>> formState in handleSubmit >>', formState)
-        alert('Message sent.')
+        //alert('Message sent.')
         // TODO: project scope is only for frontend. Backend developer needed for additional functionality.
     }
 
