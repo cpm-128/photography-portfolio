@@ -103,14 +103,21 @@ const PhotoList = ({ category }) => {
 
     const currentPhotos = photos.filter((photo) => photo.category === category);
 
-    const toggleModal = (image, i) => {
+    const [currentPhoto, setCurrentPhoto] = useState();
 
+    // hook to register if the modal is open or not, set initial isModelOpen to false to be closed
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const toggleModal = (image, i) => {
+      setCurrentPhoto({ ...image, index: i });
+      // open model
+      setIsModalOpen(true);
     };
 
     return (
         <div>
-          {/* import the modal. display on when image is clicked, populate with image that was clicked */}
-          <Modal></Modal>
+          {/* import the modal. display on when image is clicked, populate with image that was clicked; currentPhoto prop comes from the useState */}
+          {isModalOpen && <Modal currentPhoto={currentPhoto} />}
             <div className="flex-row">
                 {currentPhotos.map((image, i) => (
                     <img
