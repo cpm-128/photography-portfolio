@@ -3,7 +3,12 @@ import Modal from '../Modal';
 
 const PhotoList = ({ category }) => {
 
-    const [photos] = useState([
+  // hook to register if the modal is open or not, set initial isModelOpen to false to be closed
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [currentPhoto, setCurrentPhoto] = useState();
+
+  const [photos] = useState([
         {
             name: 'Grocery aisle',
             category: 'commercial',
@@ -99,33 +104,27 @@ const PhotoList = ({ category }) => {
             category: 'landscape',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricie',
           }
-    ]);
+  ]);
 
-    const currentPhotos = photos.filter((photo) => photo.category === category);
+  const currentPhotos = photos.filter((photo) => photo.category === category);
 
-    const [currentPhoto, setCurrentPhoto] = useState();
-
-    // hook to register if the modal is open or not, set initial isModelOpen to false to be closed
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const toggleModal = (image, i) => {
-      setCurrentPhoto({ ...image, index: i });
-      // open model
-      setIsModalOpen(!isModalOpen);
-    };
+  const toggleModal = (image, i) => {
+    setCurrentPhoto({ ...image, index: i });
+    // open model
+    setIsModalOpen(!isModalOpen);
+  };
 
     return (
         <div>
           {/* import the modal. display on when image is clicked, populate with image that was clicked; currentPhoto prop comes from the useState */}
           {isModalOpen && (
             <Modal currentPhoto={currentPhoto}
-            onClose={toggleModal}
-            />
+            onClose={toggleModal} />
           )}
             <div className="flex-row">
                 {currentPhotos.map((image, i) => (
                     <img
-                        src={require(`../../assets/small/${category}/${i}.jpg`)}
+                        src={require(`../../assets/small/${category}/${i}.jpg`).default}
                         alt={image.name}
                         className="img-thumbnail mx-1"
                         // invoke the model on click, this will be added to every image as part of the map function

@@ -5,7 +5,7 @@ import React from 'react';
 
 // currentPhoto is defined in PhotoList
 // pass the onClose as a prop from the PhotoList component
-function Modal({ currentPhoto, onClose }) {
+const Modal = ({ currentPhoto, onClose }) => {
 
     // deconstruct the prop that is currentPhoto
     const {name, category, description, index } = currentPhoto;
