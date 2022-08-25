@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Modal from '../Modal';
 
 const PhotoList = ({ category }) => {
 
@@ -102,14 +103,22 @@ const PhotoList = ({ category }) => {
 
     const currentPhotos = photos.filter((photo) => photo.category === category);
 
+    const toggleModal = (image, i) => {
+
+    };
+
     return (
         <div>
+          {/* import the modal. display on when image is clicked, populate with image that was clicked */}
+          <Modal></Modal>
             <div className="flex-row">
                 {currentPhotos.map((image, i) => (
                     <img
                         src={require(`../../assets/small/${category}/${i}.jpg`)}
                         alt={image.name}
                         className="img-thumbnail mx-1"
+                        // invoke the model on click, this will be added to every image as part of the map function
+                        onClick={() => toggleModal(image, i)}
                         key={image.name}
                     />
                 ))}
